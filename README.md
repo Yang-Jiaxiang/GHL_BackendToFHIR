@@ -1,42 +1,290 @@
-# GHL_Backend
-GHL_Backend is a noSQL-based NodeJS server for managing the medical reports built on [Express](https://expressjs.com/zh-tw/) .
+# GHL_BackendToFHIR **API** 參考
 
-![](https://github.com/johnny990628/GHL_Frontend/blob/master/public/ghl.gif)
-<img src="https://github.com/johnny990628/GHL_Frontend/blob/master/public/logo.png" width="20%" />
+## **GET**：http://localhost:3080/ghl/fhir/Patient?name=吳爸爸
 
-## Installation
+可帶入參數：id、identifier、name、birthDate、gender。  
 
-#### requirement
-- [Node.js](https://nodejs.org/zh-tw/download/) >= 16
-- [MongoDB](https://www.mongodb.com/) >= 5
-- [Express](https://expressjs.com/zh-tw/) > 4
+### **response** ：Array
 
-#### Clone the repo
-```bash
-git clone https://github.com/johnny990628/GHL_backend
-cd GHL_backend
+```json
+[
+    {
+        "resourceType": "Patient",
+        "_id": "E125678198",
+        "identifier": [
+            {
+                "use": "official",
+                "type": {
+                    "coding": [
+                        {
+                            "system": "http://terminology.hl7.org/CodeSystem/v2-0203",
+                            "code": "NI"
+                        }
+                    ]
+                },
+                "system": "http://www.moi.gov.tw/",
+                "value": "E125678198"
+            }
+        ],
+        "active": true,
+        "name": [
+            {
+                "use": "official",
+                "text": "吳爸爸D",
+                "family": "吳",
+                "given": "爸爸"
+            }
+        ],
+        "telecom": [
+            {
+                "system": "phone",
+                "value": "0911710942",
+                "use": "mobile",
+                "period": {
+                    "start": "2022-07-31",
+                    "end": "2024-07-31"
+                }
+            }
+        ],
+        "gender": "female",
+        "birthDate": "2011-09-07T16:00:00.000Z"
+    }
+]
 ```
 
-#### Install dependencies
-```bash
-npm install
+## **GET**：http://localhost:3080/ghl/fhir/Patient/E125678198
+
+### **response** ：object
+
+```json
+{
+    "resourceType": "Patient",
+    "_id": "E125678198",
+    "identifier": [
+        {
+            "use": "official",
+            "type": {
+                "coding": [
+                    {
+                        "system": "http://terminology.hl7.org/CodeSystem/v2-0203",
+                        "code": "NI"
+                    }
+                ]
+            },
+            "system": "http://www.moi.gov.tw/",
+            "value": "E125678198"
+        }
+    ],
+    "active": true,
+    "name": [
+        {
+            "use": "official",
+            "text": "吳爸爸D",
+            "family": "吳",
+            "given": "爸爸"
+        }
+    ],
+    "telecom": [
+        {
+            "system": "phone",
+            "value": "0911710942",
+            "use": "mobile",
+            "period": {
+                "start": "2022-07-31",
+                "end": "2024-07-31"
+            }
+        }
+    ],
+    "gender": "female",
+    "birthDate": "2011-09-07T16:00:00.000Z"
+}
 ```
 
-## Configuration
 
-#### dotenv
-
-```bash
-PORT="your server port"
-DB_URL="mongodb://localhost:27017/ghl"
-WEB_ORIGIN_URL="your web app port"
-JWT_SECRECT_KEY="jwt secrect key"
+## **POST**：http://localhost:3080/ghl/fhir/Patient
+### **request** ：object
+```json 
+{
+    "resourceType": "Patient",
+    "_id": "E125678198",
+    "identifier": [
+        {
+            "use": "official",
+            "type": {
+                "coding": [
+                    {
+                        "system": "http://terminology.hl7.org/CodeSystem/v2-0203",
+                        "code": "NI"
+                    }
+                ]
+            },
+            "system": "http://www.moi.gov.tw/",
+            "value": "E125678198"
+        }
+    ],
+    "active": true,
+    "name": [
+        {
+            "use": "official",
+            "text": "吳爸爸D",
+            "family": "吳",
+            "given": "爸爸"
+        }
+    ],
+    "telecom": [
+        {
+            "system": "phone",
+            "value": "0911710942",
+            "use": "mobile",
+            "period": {
+                "start": "2022-07-31",
+                "end": "2024-07-31"
+            }
+        }
+    ],
+    "gender": "female",
+    "birthDate": "2011-09-07T16:00:00.000Z"
+}
 ```
+ ### **response** ：object
+ ```json 
+{
+    "resourceType": "Patient",
+    "_id": "E125678198",
+    "identifier": [
+        {
+            "use": "official",
+            "type": {
+                "coding": [
+                    {
+                        "system": "http://terminology.hl7.org/CodeSystem/v2-0203",
+                        "code": "NI"
+                    }
+                ]
+            },
+            "system": "http://www.moi.gov.tw/",
+            "value": "E125678198"
+        }
+    ],
+    "active": true,
+    "name": [
+        {
+            "use": "official",
+            "text": "吳爸爸D",
+            "family": "吳",
+            "given": "爸爸"
+        }
+    ],
+    "telecom": [
+        {
+            "system": "phone",
+            "value": "0911710942",
+            "use": "mobile",
+            "period": {
+                "start": "2022-07-31",
+                "end": "2024-07-31"
+            }
+        }
+    ],
+    "gender": "female",
+    "birthDate": "2011-09-07T16:00:00.000Z"
+}
+ ```
 
-#### Deploy
-```bash
-node server.js
+
+
+
+
+## **PUT**：http://localhost:3080/ghl/fhir/Patient/E125678198
+### **request** ：object
+```json 
+{
+    "resourceType": "Patient",
+    "_id": "E125678198",
+    "identifier": [
+        {
+            "use": "official",
+            "type": {
+                "coding": [
+                    {
+                        "system": "http://terminology.hl7.org/CodeSystem/v2-0203",
+                        "code": "NI"
+                    }
+                ]
+            },
+            "system": "http://www.moi.gov.tw/",
+            "value": "E125678198"
+        }
+    ],
+    "active": true,
+    "name": [
+        {
+            "use": "official",
+            "text": "吳爸爸AFWA",
+            "family": "吳",
+            "given": "爸爸"
+        }
+    ],
+    "telecom": [
+        {
+            "system": "phone",
+            "value": "0911710942",
+            "use": "mobile",
+            "period": {
+                "start": "2022-07-31",
+                "end": "2024-07-31"
+            }
+        }
+    ],
+    "gender": "female",
+    "birthDate": "2011-09-07T16:00:00.000Z"
+}
 ```
+ ### **response** ：object
+ ```json 
+{
+    "resourceType": "Patient",
+    "_id": "E125678198",
+    "identifier": [
+        {
+            "use": "official",
+            "type": {
+                "coding": [
+                    {
+                        "system": "http://terminology.hl7.org/CodeSystem/v2-0203",
+                        "code": "NI"
+                    }
+                ]
+            },
+            "system": "http://www.moi.gov.tw/",
+            "value": "E125678198"
+        }
+    ],
+    "active": true,
+    "name": [
+        {
+            "use": "official",
+            "text": "吳爸爸AFWA",
+            "family": "吳",
+            "given": "爸爸"
+        }
+    ],
+    "telecom": [
+        {
+            "system": "phone",
+            "value": "0911710942",
+            "use": "mobile",
+            "period": {
+                "start": "2022-07-31",
+                "end": "2024-07-31"
+            }
+        }
+    ],
+    "gender": "female",
+    "birthDate": "2011-09-07T16:00:00.000Z"
+}
+ ```
 
-## Author
-[johnny990628](https://github.com/johnny990628)
+
+
+ ## **DELETE**：http://localhost:3080/ghl/fhir/Patient/E125678198
