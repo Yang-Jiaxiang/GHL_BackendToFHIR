@@ -1,5 +1,8 @@
 # GHL_BackendToFHIR **API** 參考
-
+**注意**：Patient只支援 id、identifier、name、birthDate、gender  
+./router/fhirApis/convery 內有兩個轉換用的object  
+ghlJsonToFhir()請使用**Array**帶入 例如：ghlJsonToFhir([name:"yang"])  
+_id === identifier，ID使用身分證。
 ## **GET**：http://localhost:3080/ghl/fhir/Patient?name=吳爸爸
 
 可帶入參數：id、identifier、name、birthDate、gender。  
