@@ -125,7 +125,7 @@ router
             return res.status(500).json({ message: e.message });
         }
     })
-    .patch(async (req, res) => {
+    .put(async (req, res) => {
         /* 	
             #swagger.tags = ['Patients']
             #swagger.description = '修改病人' 
